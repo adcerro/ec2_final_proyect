@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:logisim_n/ui/controllers/circuits_controller.dart';
+import 'package:logisim_n/ui/views/circuits_view.dart';
 import 'package:logisim_n/ui/views/home_page.dart';
 
 void main() {
+  Get.put(CircuitController());
   runApp(const MyApp());
 }
 
@@ -11,13 +15,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Logisim N',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
         useMaterial3: true,
       ),
       home: const HomePage(title: 'Logisim N'),
+      routes: {'/circuits': (context) => CircuitsPage()},
     );
   }
 }

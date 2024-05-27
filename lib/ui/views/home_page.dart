@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:logisim_n/ui/controllers/circuits_controller.dart';
 import 'package:xml/xml.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -12,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  CircuitController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,20 +31,10 @@ class _HomePageState extends State<HomePage> {
             ),
             IconButton(
               onPressed: () async {
-                FilePickerResult? rawfile = await FilePicker.platform.pickFiles(
-                    type: FileType.custom, allowedExtensions: ['circ']);
-                if (rawfile != null) {
-                  String text =
-                      utf8.decode(rawfile.files.single.bytes!.toList());
-                  XmlDocument file = XmlDocument.parse(text);
-                  file.findAllElements('circuit').forEach((element) {
-                    for (var tags in element.attributes) {
-                      print(tags);
-                    }
-                    for (var properties in element.children) {
-                      print(properties);
-                    }
-                  });
+                if (await controller.openFile()) {
+                  Get.toNamed('/circuits');
+                } else {
+                  Get.snackbar('Error', 'Could not open the file');
                 }
               },
               icon: const Icon(Icons.file_upload_rounded),
