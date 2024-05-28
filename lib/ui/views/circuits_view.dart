@@ -1,12 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
 import 'package:logisim_n/ui/widgets/white_board.dart';
-import 'package:xml/xml.dart';
-import 'package:file_picker/file_picker.dart';
 
 class CircuitsPage extends StatefulWidget {
   const CircuitsPage({super.key});
@@ -15,15 +10,19 @@ class CircuitsPage extends StatefulWidget {
 }
 
 class _CircuitsPageState extends State<CircuitsPage> {
+  String _circuitName = "main";
   CircuitController controller = Get.find();
   List<Widget> displayList() {
     List<Widget> circList = [];
-    controller.listCircuits().forEach((element) {
+    controller.listCircuitsNames().forEach((element) {
       circList.add(TextButton(
           style: const ButtonStyle(
               foregroundColor: MaterialStatePropertyAll(Colors.white)),
           onPressed: () {
-            print(element);
+            setState(() {
+              print(element);
+              _circuitName = element;
+            });
           },
           child: Text(element)));
     });
@@ -50,7 +49,8 @@ class _CircuitsPageState extends State<CircuitsPage> {
                 children: displayList(),
               )),
           CustomPaint(
-            painter: WhiteBoard(),
+            willChange: true,
+            painter: WhiteBoard(circuitName: _circuitName),
           )
         ],
       ),

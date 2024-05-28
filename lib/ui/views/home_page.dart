@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
-import 'package:xml/xml.dart';
-import 'package:file_picker/file_picker.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
