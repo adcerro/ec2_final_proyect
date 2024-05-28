@@ -27,4 +27,12 @@ class CircuitController extends GetxController {
     });
     return circs;
   }
+
+  List<List<Offset>> cables(String circname) {
+    List<List<Offset>> wiring = [];
+    file.findAllElements('wire').forEach((element) {
+      print(element.attributes);
+    });
+    return wiring;
+  }
 }

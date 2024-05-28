@@ -20,7 +20,7 @@ class _CircuitsPageState extends State<CircuitsPage> {
     List<Widget> circList = [];
     controller.listCircuits().forEach((element) {
       circList.add(TextButton(
-          style: ButtonStyle(
+          style: const ButtonStyle(
               foregroundColor: MaterialStatePropertyAll(Colors.white)),
           onPressed: () {
             print(element);
