@@ -1,11 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/domain/models/circuit.dart';
 import 'package:logisim_n/domain/models/wire.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
-import 'package:logisim_n/ui/views/circuits_view.dart';
 
 class WhiteBoard extends CustomPainter {
   late Circuit circuit;

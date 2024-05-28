@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
-import 'package:logisim_n/ui/widgets/white_board.dart';
+import 'package:logisim_n/ui/widgets/circuit_drawer.dart';
 
 class CircuitsPage extends StatefulWidget {
   const CircuitsPage({super.key});
