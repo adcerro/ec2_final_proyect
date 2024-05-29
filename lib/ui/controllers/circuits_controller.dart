@@ -9,6 +9,7 @@ import 'package:xml/xml.dart';
 class CircuitController extends GetxController {
   late XmlDocument file;
   List<Circuit> circuitStorage = [];
+  List<String> circuitNames = [];
   Future<bool> openFile() async {
     FilePickerResult? rawfile = await FilePicker.platform
         .pickFiles(type: FileType.custom, allowedExtensions: ['circ']);
@@ -51,12 +52,13 @@ class CircuitController extends GetxController {
   }
 
   List<String> listCircuitsNames() {
-    List<String> circs = [];
-    file.findAllElements('circuit').forEach((element) {
-      String name = element.attributes.first.toString();
-      name = name.substring(6, name.length - 1);
-      circs.add(name);
-    });
-    return circs;
+    if (circuitNames.isEmpty) {
+      file.findAllElements('circuit').forEach((element) {
+        String name = element.attributes.first.toString();
+        name = name.substring(6, name.length - 1);
+        circuitNames.add(name);
+      });
+    }
+    return circuitNames;
   }
 }

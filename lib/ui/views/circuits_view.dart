@@ -14,18 +14,17 @@ class _CircuitsPageState extends State<CircuitsPage> {
   Offset offset = Offset(0, 0);
   String _circuitName = "main";
   CircuitController controller = Get.find();
-  List<Widget> displayList() {
-    List<Widget> circList = [];
+  List<ListTile> displayList() {
+    List<ListTile> circList = [];
     controller.listCircuitsNames().forEach((element) {
-      circList.add(TextButton(
-          style: const ButtonStyle(
-              foregroundColor: MaterialStatePropertyAll(Colors.white)),
-          onPressed: () {
+      circList.add(ListTile(
+          onTap: () {
             setState(() {
+              offset = Offset.zero;
               _circuitName = element;
             });
           },
-          child: Text(element)));
+          title: Text(element)));
     });
     return circList;
   }
@@ -35,15 +34,22 @@ class _CircuitsPageState extends State<CircuitsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        leading: DrawerButton(),
+        leading: const DrawerButton(),
         title: Text('Current circuit: $_circuitName'),
         actions: [
           IconButton(
-              onPressed: () => Get.back(), icon: const Icon(Icons.logout))
+            onPressed: () => Get.back(),
+            icon: const Icon(Icons.logout),
+            tooltip: "Close file",
+          )
         ],
       ),
       drawer: Drawer(
         width: MediaQuery.sizeOf(context).width / 4,
+        child: ListView(
+          children: displayList(),
+          //children: displayList(),
+        ),
       ),
       body: GestureDetector(
           behavior: HitTestBehavior.opaque,
