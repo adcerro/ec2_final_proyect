@@ -11,6 +11,10 @@ class WhiteBoard extends CustomPainter {
   WhiteBoard({String circuitName = "main", this.offset = Offset.zero}) {
     circuit = controller.loadCircuitData(name: circuitName);
   }
+
+  /// Given a list of wires, this function iterates through them all, painting
+  /// with an offset applied to each line painted in order to allow the
+  /// "infinite" scrolling effect
   void wirePainter({required Canvas canvas, List<Wire> wires = const []}) {
     for (var wire in wires) {
       canvas.drawLine(
@@ -28,6 +32,8 @@ class WhiteBoard extends CustomPainter {
     wirePainter(canvas: canvas, wires: circuit.wires);
   }
 
+  /// Makes sure that repainting only occurs when changing circuits or while
+  /// "scrolling" through the canvas
   @override
   bool shouldRepaint(WhiteBoard oldDelegate) {
     if (oldDelegate.offset != offset ||

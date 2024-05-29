@@ -11,7 +11,11 @@ class CircuitsPage extends StatefulWidget {
 }
 
 class _CircuitsPageState extends State<CircuitsPage> {
-  Offset offset = Offset(0, 0);
+  /// To see how scrolling is handled, read the following article
+  /// https://dev.to/sweesenkoh/flutter-infinite-scrolling-canvas-with-custompainter-32nn
+  /// In summary, all is drawn in a Canvas with a certain offset, by changing the offset
+  /// one can "move" through the drawing on the canvas
+  Offset offset = Offset.zero;
   String _circuitName = "main";
   CircuitController controller = Get.find();
   List<ListTile> displayList() {
@@ -48,7 +52,6 @@ class _CircuitsPageState extends State<CircuitsPage> {
         width: MediaQuery.sizeOf(context).width / 4,
         child: ListView(
           children: displayList(),
-          //children: displayList(),
         ),
       ),
       body: GestureDetector(

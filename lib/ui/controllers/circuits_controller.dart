@@ -10,6 +10,10 @@ class CircuitController extends GetxController {
   late XmlDocument file;
   List<Circuit> circuitStorage = [];
   List<String> circuitNames = [];
+
+  /// This function is responsible for displaying the file picker.
+  /// Once a file is chosen it gets the text and parses it to the
+  /// XmlDocument type of the xml library
   Future<bool> openFile() async {
     FilePickerResult? rawfile = await FilePicker.platform
         .pickFiles(type: FileType.custom, allowedExtensions: ['circ']);
@@ -21,6 +25,10 @@ class CircuitController extends GetxController {
     return false;
   }
 
+  /// This function looks for the specific circuit in the controller's
+  /// storage, if it's not there, then it creates a circuit extracting the
+  /// information from the .circ file and stores it in the circuitStorage Array
+  /// Finally (being in the storage or not) it returns the circuit
   Circuit loadCircuitData({required String name}) {
     Circuit create = Circuit(name: name);
     for (var circ in circuitStorage) {
@@ -51,6 +59,8 @@ class CircuitController extends GetxController {
     return create;
   }
 
+  ///This function gets all the circuit tags from the file and extracts their name
+  ///then the names are stored locally for performance reasons
   List<String> listCircuitsNames() {
     if (circuitNames.isEmpty) {
       file.findAllElements('circuit').forEach((element) {
