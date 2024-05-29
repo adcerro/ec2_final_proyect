@@ -7,14 +7,15 @@ import 'package:logisim_n/ui/controllers/circuits_controller.dart';
 class WhiteBoard extends CustomPainter {
   late Circuit circuit;
   CircuitController controller = Get.find();
-  WhiteBoard({String circuitName = "main"}) {
+  Offset offset;
+  WhiteBoard({String circuitName = "main", this.offset = Offset.zero}) {
     circuit = controller.loadCircuitData(name: circuitName);
   }
   void wirePainter({required Canvas canvas, List<Wire> wires = const []}) {
     for (var wire in wires) {
       canvas.drawLine(
-          Offset(wire.origin[0], wire.origin[1]),
-          Offset(wire.end[0], wire.end[1]),
+          Offset(wire.origin[0], wire.origin[1]) + offset,
+          Offset(wire.end[0], wire.end[1]) + offset,
           Paint()
             ..color = Colors.black
             ..strokeWidth = 5
@@ -29,9 +30,6 @@ class WhiteBoard extends CustomPainter {
 
   @override
   bool shouldRepaint(WhiteBoard oldDelegate) {
-    if (oldDelegate.circuit != circuit) {
-      return true;
-    }
-    return false;
+    return true;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
 import 'package:logisim_n/ui/widgets/circuit_drawer.dart';
@@ -10,6 +11,7 @@ class CircuitsPage extends StatefulWidget {
 }
 
 class _CircuitsPageState extends State<CircuitsPage> {
+  Offset offset = Offset(0, 0);
   String _circuitName = "main";
   CircuitController controller = Get.find();
   List<Widget> displayList() {
@@ -20,7 +22,6 @@ class _CircuitsPageState extends State<CircuitsPage> {
               foregroundColor: MaterialStatePropertyAll(Colors.white)),
           onPressed: () {
             setState(() {
-              print(element);
               _circuitName = element;
             });
           },
@@ -36,24 +37,34 @@ class _CircuitsPageState extends State<CircuitsPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('View'),
       ),
-      body: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-              color: Theme.of(context).primaryColor,
-              width: MediaQuery.sizeOf(context).width / 9,
-              height: MediaQuery.sizeOf(context).height,
-              child: ListView(
-                shrinkWrap: true,
-                children: displayList(),
-              )),
-          CustomPaint(
-            willChange: true,
-            painter: WhiteBoard(circuitName: _circuitName),
-          )
-        ],
-      ),
+      body: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onPanUpdate: (details) {
+            setState(() {
+              offset = offset + details.delta;
+            });
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  color: Theme.of(context).primaryColor,
+                  width: MediaQuery.sizeOf(context).width / 9,
+                  height: MediaQuery.sizeOf(context).height,
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: displayList(),
+                  )),
+              Expanded(
+                child: CustomPaint(
+                  willChange: true,
+                  painter:
+                      WhiteBoard(circuitName: _circuitName, offset: offset),
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
