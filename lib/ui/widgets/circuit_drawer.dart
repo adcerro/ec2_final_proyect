@@ -30,6 +30,9 @@ class WhiteBoard extends CustomPainter {
 
   @override
   bool shouldRepaint(WhiteBoard oldDelegate) {
-    return true;
+    if (oldDelegate.offset != offset ||
+        oldDelegate.circuit.name != circuit.name) return true;
+
+    return false;
   }
 }

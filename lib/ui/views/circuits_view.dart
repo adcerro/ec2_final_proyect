@@ -35,35 +35,28 @@ class _CircuitsPageState extends State<CircuitsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('View'),
+        leading: DrawerButton(),
+        title: Text('Current circuit: $_circuitName'),
+        actions: [
+          IconButton(
+              onPressed: () => Get.back(), icon: const Icon(Icons.logout))
+        ],
+      ),
+      drawer: Drawer(
+        width: MediaQuery.sizeOf(context).width / 4,
       ),
       body: GestureDetector(
-          behavior: HitTestBehavior.translucent,
+          behavior: HitTestBehavior.opaque,
           onPanUpdate: (details) {
             setState(() {
               offset = offset + details.delta;
             });
           },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                  color: Theme.of(context).primaryColor,
-                  width: MediaQuery.sizeOf(context).width / 9,
-                  height: MediaQuery.sizeOf(context).height,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: displayList(),
-                  )),
-              Expanded(
-                child: CustomPaint(
-                  willChange: true,
-                  painter:
-                      WhiteBoard(circuitName: _circuitName, offset: offset),
-                ),
-              ),
-            ],
+          child: CustomPaint(
+            size: Size(MediaQuery.sizeOf(context).width,
+                MediaQuery.sizeOf(context).height),
+            willChange: true,
+            painter: WhiteBoard(circuitName: _circuitName, offset: offset),
           )),
     );
   }
