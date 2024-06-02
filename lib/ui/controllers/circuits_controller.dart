@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/domain/models/circuit.dart';
+import 'package:logisim_n/domain/models/tunnel.dart';
 import 'package:logisim_n/domain/models/wire.dart';
 import 'package:xml/xml.dart';
 
@@ -39,6 +41,7 @@ class CircuitController extends GetxController {
     file.findAllElements('circuit').forEach((element) {
       if (element.attributes.first.toString().contains(name)) {
         List<Wire> wires = [];
+        List<Tunnel> tunnels = [];
         for (var element in element.childElements) {
           if (element.name.toString() == "wire") {
             String origin = element.attributes.first.value;
@@ -51,8 +54,28 @@ class CircuitController extends GetxController {
             double yEnd = double.parse(end.split(",")[1]);
             wires.add(Wire(origin: [xOrigin, yOrigin], end: [xEnd, yEnd]));
           }
+          if (element.attributes.last.value == "Tunnel") {
+            String location = element.attributes[1].value;
+            List coordinates =
+                location.substring(1, location.length - 1).split(",");
+            String label = "";
+            String facing = "west";
+            for (var subelement in element.childElements) {
+              if (subelement.attributes.first.value == "label") {
+                label = subelement.attributes.last.value;
+              }
+              if (subelement.attributes.first.value == "facing") {
+                facing = subelement.attributes.last.value;
+              }
+            }
+            tunnels.add(Tunnel(
+                direction: facing,
+                label: label,
+                location: Offset(double.parse(coordinates.first),
+                    double.parse(coordinates.last))));
+          }
         }
-        create = Circuit(name: name, wires: wires);
+        create = Circuit(name: name, wires: wires, tunnels: tunnels);
         circuitStorage.add(create);
       }
     });
