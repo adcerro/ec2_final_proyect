@@ -31,42 +31,35 @@ class WhiteBoard extends CustomPainter {
   }
 
   /// Given a list of tunnels, this function iterates through them all, painting
-  /// with an offset applied to each line painted in order to allow the
+  /// with an offset applied to each rect and text painted in order to allow the
   /// "infinite" scrolling effect. The way of handling different directions is
   /// basic at most
   void tunnelPainter(
       {required Canvas canvas, List<Tunnel> tunnels = const []}) {
     for (var tunnel in tunnels) {
-      TextPainter texter = TextPainter(
-          text: TextSpan(text: tunnel.label), textDirection: TextDirection.ltr);
-      texter.layout();
-      Offset start = Offset.zero;
-      Offset end = Offset.zero;
+      Offset start = tunnel.location + offset;
+      Offset end = tunnel.location + offset;
       Offset textLocation = tunnel.location + offset;
       switch (tunnel.direction) {
         case "east":
           textLocation = textLocation + Offset(-tunnel.label.length * 7.5, -10);
-          start =
-              tunnel.location + Offset(-tunnel.label.length * 8, -10) + offset;
-          end = tunnel.location + const Offset(0, 10) + offset;
+          start = start + Offset(-tunnel.label.length * 8, -10);
+          end = end + const Offset(0, 10);
           break;
         case "west":
           textLocation = textLocation + const Offset(2, -10);
-          start = tunnel.location + const Offset(0, -10) + offset;
-          end =
-              tunnel.location + Offset(tunnel.label.length * 8.5, 10) + offset;
+          start = start + const Offset(0, -10);
+          end = end + Offset(tunnel.label.length * 8.5, 10);
           break;
         case "north":
           textLocation = textLocation + Offset(-tunnel.label.length * 4, 5);
-          start =
-              tunnel.location + Offset(-tunnel.label.length * 4.5, 0) + offset;
-          end = tunnel.location + Offset(tunnel.label.length * 5, 20) + offset;
+          start = start + Offset(-tunnel.label.length * 4.5, 0);
+          end = end + Offset(tunnel.label.length * 5, 20);
           break;
         case "south":
           textLocation = textLocation + Offset(-tunnel.label.length * 4, -15);
-          start =
-              tunnel.location + Offset(-tunnel.label.length * 5, -15) + offset;
-          end = tunnel.location + Offset(tunnel.label.length * 4, 0) + offset;
+          start = start + Offset(-tunnel.label.length * 5, -15);
+          end = end + Offset(tunnel.label.length * 4, 0);
           break;
       }
       canvas.drawRect(
@@ -75,6 +68,9 @@ class WhiteBoard extends CustomPainter {
             ..color = Colors.black
             ..strokeWidth = 2
             ..style = PaintingStyle.stroke);
+      TextPainter texter = TextPainter(
+          text: TextSpan(text: tunnel.label), textDirection: TextDirection.ltr);
+      texter.layout();
       texter.paint(canvas, textLocation);
     }
   }
