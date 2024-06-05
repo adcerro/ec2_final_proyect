@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/data/datasources/circuit_datasource.dart';
+import 'package:logisim_n/data/datasources/i_circuit_datasource.dart';
 import 'package:logisim_n/data/repositories/circuit_repository.dart';
+import 'package:logisim_n/domain/repositories/i_circuit_repository.dart';
 import 'package:logisim_n/domain/use_case/circuit_usecase.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
 import 'package:logisim_n/ui/views/circuits_view.dart';
 import 'package:logisim_n/ui/views/home_page.dart';
 
 void main() {
-  Get.put(CircuitDataSource());
-  Get.put(CircuitRepository(Get.find()));
+  Get.put<ICircuitDataSource>(CircuitDataSource());
+  Get.put<ICircuitRepository>(CircuitRepository(Get.find()));
   Get.put(CircuitUseCase(Get.find()));
   Get.put(CircuitController());
   runApp(const MyApp());
