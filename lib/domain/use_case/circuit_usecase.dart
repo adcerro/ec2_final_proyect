@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:logisim_n/domain/repositories/i_circuit_repository.dart';
 
 import '../models/circuit.dart';
