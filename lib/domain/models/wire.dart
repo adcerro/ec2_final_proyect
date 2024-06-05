@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
+
 class Wire {
-  List<double> origin;
-  List<double> end;
+  Offset origin;
+  Offset end;
   Wire({required this.origin, required this.end});
 }

@@ -21,8 +21,8 @@ class WhiteBoard extends CustomPainter {
   void wirePainter({required Canvas canvas, List<Wire> wires = const []}) {
     for (var wire in wires) {
       canvas.drawLine(
-          Offset(wire.origin[0], wire.origin[1]) + offset,
-          Offset(wire.end[0], wire.end[1]) + offset,
+         wire.origin + offset,
+          wire.end + offset,
           Paint()
             ..color = Colors.black
             ..strokeWidth = 5

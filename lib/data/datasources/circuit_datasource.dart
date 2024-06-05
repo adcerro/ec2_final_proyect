@@ -66,7 +66,7 @@ class CircuitDataSource extends ICircuitDataSource {
             double yOrigin = double.parse(origin.split(",")[1]);
             double xEnd = double.parse(end.split(",")[0]);
             double yEnd = double.parse(end.split(",")[1]);
-            wires.add(Wire(origin: [xOrigin, yOrigin], end: [xEnd, yEnd]));
+            wires.add(Wire(origin:Offset(xOrigin, yOrigin), end: Offset(xEnd, yEnd)));
           }
           if (element.attributes.last.value == "Tunnel") {
             String location = element.attributes[1].value;
