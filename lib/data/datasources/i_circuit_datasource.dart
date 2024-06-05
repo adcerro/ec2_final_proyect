@@ -1,6 +1,7 @@
 import '../../../domain/models/circuit.dart';
 
 abstract class ICircuitDataSource {
-  bool addCircuit(Circuit circ);
-  List<Circuit> getCircuits();
+  Circuit loadCircuitData({required String name});
+  Future<bool> openFile();
+  List<String> listCircuitsNames();
 }
