@@ -9,4 +9,5 @@ class CircuitUseCase {
       _repository.loadCircuitData(name: name);
   Future<bool> openFile() => _repository.openFile();
   List<String> listCircuitsNames() => _repository.listCircuitsNames();
+  Future<bool> clear() => _repository.clear();
 }

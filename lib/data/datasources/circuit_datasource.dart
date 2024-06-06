@@ -29,6 +29,14 @@ class CircuitDataSource extends ICircuitDataSource {
     return false;
   }
 
+  @override
+  Future<bool> clear() async {
+    circuitStorage.clear();
+    circuitNames.clear();
+    file = XmlDocument();
+    return true;
+  }
+
   ///This function gets all the circuit tags from the file and extracts their name
   ///then the names are stored locally for performance reasons
   @override

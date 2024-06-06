@@ -33,6 +33,7 @@ class WhiteBoard extends CustomPainter {
           end = end + const Offset(0, 10);
           break;
         case "west":
+          print("westfacing");
           textLocation = textLocation + const Offset(2, -10);
           start = start + const Offset(0, -10);
           end = end + Offset(15, 10);
@@ -72,7 +73,7 @@ class WhiteBoard extends CustomPainter {
           break;
 
         case "XnorGate":
-          paint.color = Colors.black;
+          paint.color = Colors.grey;
           label = "xnor";
           break;
       }

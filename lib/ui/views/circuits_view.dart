@@ -42,7 +42,10 @@ class _CircuitsPageState extends State<CircuitsPage> {
         title: Text('Current circuit: $_circuitName'),
         actions: [
           IconButton(
-            onPressed: () => Get.back(),
+            onPressed: () {
+              controller.clear();
+              Get.back();
+            },
             icon: const Icon(Icons.logout),
             tooltip: "Close file",
           )

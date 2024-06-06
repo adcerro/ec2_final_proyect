@@ -4,4 +4,5 @@ abstract class ICircuitDataSource {
   Circuit loadCircuitData({required String name});
   Future<bool> openFile();
   List<String> listCircuitsNames();
+  Future<bool> clear();
 }
