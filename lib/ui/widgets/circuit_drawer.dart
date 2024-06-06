@@ -3,8 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/domain/models/circuit.dart';
-import 'package:logisim_n/domain/models/tunnel.dart';
-import 'package:logisim_n/domain/models/wire.dart';
+import 'package:logisim_n/domain/models/wiring.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
 
 class WhiteBoard extends CustomPainter {
@@ -21,7 +20,7 @@ class WhiteBoard extends CustomPainter {
   void wirePainter({required Canvas canvas, List<Wire> wires = const []}) {
     for (var wire in wires) {
       canvas.drawLine(
-         wire.origin + offset,
+          wire.origin + offset,
           wire.end + offset,
           Paint()
             ..color = Colors.black

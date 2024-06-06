@@ -1,9 +1,14 @@
-import 'package:logisim_n/domain/models/tunnel.dart';
-import 'package:logisim_n/domain/models/wire.dart';
+import 'package:logisim_n/domain/models/gates.dart';
+import 'package:logisim_n/domain/models/wiring.dart';
 
 class Circuit {
   String name;
   List<Wire> wires;
   List<Tunnel> tunnels;
-  Circuit({required this.name, this.wires = const [], this.tunnels = const []});
+  List<Gate> gates;
+  Circuit(
+      {required this.name,
+      this.wires = const [],
+      this.tunnels = const [],
+      this.gates = const []});
 }

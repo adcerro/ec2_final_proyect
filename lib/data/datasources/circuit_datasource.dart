@@ -4,9 +4,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:logisim_n/data/datasources/i_circuit_datasource.dart';
 import 'package:logisim_n/domain/models/circuit.dart';
-import 'package:logisim_n/domain/models/tunnel.dart';
-import 'package:logisim_n/domain/models/wire.dart';
+import 'package:logisim_n/domain/models/wiring.dart';
 import 'package:xml/xml.dart';
+
+import '../../domain/models/gates.dart';
 
 class CircuitDataSource extends ICircuitDataSource {
   late XmlDocument file;
@@ -88,10 +89,32 @@ class CircuitDataSource extends ICircuitDataSource {
               double.parse(coordinates.last))));
     }
 
+    void andProcessing({required XmlElement element, required List gates}) {
+      String location = element.attributes[1].value;
+      List coordinates = location.substring(1, location.length - 1).split(",");
+      String facing = "west"; // Default facing
+      int size = 30; // default size
+
+      for (var subelement in element.childElements) {
+        if (subelement.attributes.first.value == "facing") {
+          facing = subelement.attributes.last.value;
+        }
+        if (subelement.attributes.first.value == "size") {
+          size = int.parse(subelement.attributes.last.value);
+        }
+      }
+      gates.add(AndGate(
+          facing: facing,
+          location: Offset(
+              double.parse(coordinates.first), double.parse(coordinates.last)),
+          size: size));
+    }
+
     file.findAllElements('circuit').forEach((element) {
       if (element.attributes.first.toString().contains(name)) {
         List<Wire> wires = [];
         List<Tunnel> tunnels = [];
+        List<AndGate> gates = [];
         for (var element in element.childElements) {
           if (element.name.toString() == "wire") {
             wireSubProcessing(element: element, wires: wires);
@@ -99,8 +122,12 @@ class CircuitDataSource extends ICircuitDataSource {
           if (element.attributes.last.value == "Tunnel") {
             tunnelSubProcessing(element: element, tunnels: tunnels);
           }
+          if (element.attributes.last.value == "AND Gate") {
+            andProcessing(element: element, gates: gates);
+          }
         }
-        create = Circuit(name: name, wires: wires, tunnels: tunnels);
+        create =
+            Circuit(name: name, wires: wires, tunnels: tunnels, gates: gates);
         circuitStorage.add(create);
       }
     });
