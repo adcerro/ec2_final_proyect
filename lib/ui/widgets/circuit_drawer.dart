@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logisim_n/domain/models/circuit.dart';
+import 'package:logisim_n/domain/models/gates.dart';
 import 'package:logisim_n/domain/models/wiring.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
 
@@ -12,6 +13,20 @@ class WhiteBoard extends CustomPainter {
   Offset offset;
   WhiteBoard({String circuitName = "main", this.offset = Offset.zero}) {
     circuit = controller.loadCircuitData(name: circuitName);
+  }
+
+  /// Given a list of gates, this function iterates through them all, painting
+  /// with an offset applied to each image painted in order to allow the
+  /// "infinite" scrolling effect
+  void gatePainter({required Canvas canvas, List<Gate> gates = const []}) {
+    for (var gate in gates) {
+      if (gate is AndGate) {
+        TextPainter texter = TextPainter(
+            text: TextSpan(text: "and"), textDirection: TextDirection.ltr);
+        texter.layout();
+        texter.paint(canvas, gate.location + offset);
+      }
+    }
   }
 
   /// Given a list of wires, this function iterates through them all, painting
@@ -25,7 +40,8 @@ class WhiteBoard extends CustomPainter {
           Paint()
             ..color = Colors.black
             ..strokeWidth = 5
-            ..style = PaintingStyle.stroke);
+            ..style = PaintingStyle.stroke
+            ..strokeJoin = StrokeJoin.round);
     }
   }
 
@@ -78,6 +94,7 @@ class WhiteBoard extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     wirePainter(canvas: canvas, wires: circuit.wires);
     tunnelPainter(canvas: canvas, tunnels: circuit.tunnels);
+    gatePainter(canvas: canvas, gates: circuit.gates);
   }
 
   /// Makes sure that repainting only occurs when changing circuits or while

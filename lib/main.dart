@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Logisim N',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
