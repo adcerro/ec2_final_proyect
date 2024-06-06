@@ -25,6 +25,14 @@ class OrGate extends Gate {
       : super(location: location, direction: direction);
 }
 
+class NotGate extends Gate {
+  int size;
+
+  NotGate(
+      {required String direction, required Offset location, required this.size})
+      : super(location: location, direction: direction);
+}
+
 class XorGate extends Gate {
   int size;
 

@@ -126,6 +126,13 @@ class CircuitDataSource extends ICircuitDataSource {
                   double.parse(coordinates.last)),
               size: size));
           break;
+        case "NOT Gate":
+          gates.add(NotGate(
+              direction: facing,
+              location: Offset(double.parse(coordinates.first),
+                  double.parse(coordinates.last)),
+              size: size));
+          break;
         case "XOR Gate":
           gates.add(XorGate(
               direction: facing,

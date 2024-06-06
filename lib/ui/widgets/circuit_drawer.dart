@@ -1,12 +1,9 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart' hide Image;
 import 'package:get/get.dart';
 import 'package:logisim_n/domain/models/circuit.dart';
 import 'package:logisim_n/domain/models/gates.dart';
 import 'package:logisim_n/domain/models/wiring.dart';
 import 'package:logisim_n/ui/controllers/circuits_controller.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 class WhiteBoard extends CustomPainter {
   late Circuit circuit;
@@ -28,26 +25,23 @@ class WhiteBoard extends CustomPainter {
       Offset textLocation = gate.location + offset;
       switch (gate.direction) {
         case "east":
-          print("one east");
-          textLocation = textLocation + Offset(-15, -10);
-          start = start + Offset(0, -10);
-          end = end + const Offset(15, 10);
+          textLocation = textLocation + Offset(-29, -10);
+          start = start + Offset(-30, -10);
+          end = end + const Offset(0, 10);
           break;
         case "west":
-          print("one west");
           textLocation = textLocation + const Offset(1, -10);
           start = start + const Offset(0, -10);
           end = end + Offset(30, 10);
           break;
         case "north":
-          print("one north");
-          textLocation = textLocation + Offset(-9, 5);
+          textLocation = textLocation + Offset(-14, 5);
           start = start + Offset(-15, 0);
           end = end + Offset(15, 30);
           break;
         case "south":
-          textLocation = textLocation + Offset(-9, -15);
-          start = start + Offset(-15, -15);
+          textLocation = textLocation + Offset(-14, -25);
+          start = start + Offset(-15, -30);
           end = end + Offset(15, 0);
           break;
       }
@@ -59,6 +53,10 @@ class WhiteBoard extends CustomPainter {
         case "OrGate":
           paint.color = Colors.purple;
           label = "or";
+          break;
+        case "NotGate":
+          paint.color = Colors.red;
+          label = "not";
           break;
         case "XorGate":
           paint.color = Colors.yellow;
