@@ -61,6 +61,20 @@ class WhiteBoard extends CustomPainter {
           paint.color = Colors.yellow;
           label = "xor";
           break;
+        case "NandGate":
+          paint.color = Colors.cyan;
+          label = "nand";
+          break;
+
+        case "NorGate":
+          paint.color = Colors.pink;
+          label = "nor";
+          break;
+
+        case "XnorGate":
+          paint.color = Colors.black;
+          label = "xnor";
+          break;
       }
       canvas.drawRect(Rect.fromPoints(start, end), paint);
       TextPainter texter = TextPainter(

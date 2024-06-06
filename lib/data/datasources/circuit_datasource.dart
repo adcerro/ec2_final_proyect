@@ -104,22 +104,45 @@ class CircuitDataSource extends ICircuitDataSource {
         }
       }
       switch (element.attributes.last.value) {
-        case "AndGate":
+        case "AND Gate":
           gates.add(AndGate(
               direction: facing,
               location: Offset(double.parse(coordinates.first),
                   double.parse(coordinates.last)),
               size: size));
           break;
-        case "OrGate":
+        case "OR Gate":
           gates.add(OrGate(
               direction: facing,
               location: Offset(double.parse(coordinates.first),
                   double.parse(coordinates.last)),
               size: size));
           break;
-        case "XorGate":
+        case "XOR Gate":
           gates.add(XorGate(
+              direction: facing,
+              location: Offset(double.parse(coordinates.first),
+                  double.parse(coordinates.last)),
+              size: size));
+          break;
+        case "NAND Gate":
+          gates.add(NandGate(
+              direction: facing,
+              location: Offset(double.parse(coordinates.first),
+                  double.parse(coordinates.last)),
+              size: size));
+          break;
+
+        case "NOR Gate":
+          gates.add(NorGate(
+              direction: facing,
+              location: Offset(double.parse(coordinates.first),
+                  double.parse(coordinates.last)),
+              size: size));
+          break;
+
+        case "XNOR Gate":
+          gates.add(XnorGate(
               direction: facing,
               location: Offset(double.parse(coordinates.first),
                   double.parse(coordinates.last)),
@@ -132,7 +155,7 @@ class CircuitDataSource extends ICircuitDataSource {
       if (element.attributes.first.toString().contains(name)) {
         List<Wire> wires = [];
         List<Tunnel> tunnels = [];
-        List<AndGate> gates = [];
+        List<Gate> gates = [];
         for (var element in element.childElements) {
           if (element.name.toString() == "wire") {
             wireSubProcessing(element: element, wires: wires);
