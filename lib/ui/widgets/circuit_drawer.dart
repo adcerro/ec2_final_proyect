@@ -54,7 +54,12 @@ class WhiteBoard extends CustomPainter {
           label = "and";
           break;
         case "OrGate":
-          print("hey mano, un orgate");
+          paint.color = Colors.purple;
+          label = "or";
+          break;
+        case "XorGate":
+          paint.color = Colors.yellow;
+          label = "xor";
           break;
       }
       canvas.drawRect(Rect.fromPoints(start, end), paint);

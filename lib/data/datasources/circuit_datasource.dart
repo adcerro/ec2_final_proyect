@@ -89,7 +89,7 @@ class CircuitDataSource extends ICircuitDataSource {
               double.parse(coordinates.last))));
     }
 
-    void andProcessing({required XmlElement element, required List gates}) {
+    void gateProcessing({required XmlElement element, required List gates}) {
       String location = element.attributes[1].value;
       List coordinates = location.substring(1, location.length - 1).split(",");
       String facing = "west"; // Default facing
@@ -103,11 +103,29 @@ class CircuitDataSource extends ICircuitDataSource {
           size = int.parse(subelement.attributes.last.value);
         }
       }
-      gates.add(AndGate(
-          direction: facing,
-          location: Offset(
-              double.parse(coordinates.first), double.parse(coordinates.last)),
-          size: size));
+      switch (element.attributes.last.value) {
+        case "AndGate":
+          gates.add(AndGate(
+              direction: facing,
+              location: Offset(double.parse(coordinates.first),
+                  double.parse(coordinates.last)),
+              size: size));
+          break;
+        case "OrGate":
+          gates.add(OrGate(
+              direction: facing,
+              location: Offset(double.parse(coordinates.first),
+                  double.parse(coordinates.last)),
+              size: size));
+          break;
+        case "XorGate":
+          gates.add(XorGate(
+              direction: facing,
+              location: Offset(double.parse(coordinates.first),
+                  double.parse(coordinates.last)),
+              size: size));
+          break;
+      }
     }
 
     file.findAllElements('circuit').forEach((element) {
@@ -122,8 +140,8 @@ class CircuitDataSource extends ICircuitDataSource {
           if (element.attributes.last.value == "Tunnel") {
             tunnelSubProcessing(element: element, tunnels: tunnels);
           }
-          if (element.attributes.last.value == "AND Gate") {
-            andProcessing(element: element, gates: gates);
+          if (element.attributes.last.value.contains("Gate")) {
+            gateProcessing(element: element, gates: gates);
           }
         }
         create =
