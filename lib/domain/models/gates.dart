@@ -5,13 +5,14 @@ import 'package:flutter/services.dart';
 
 abstract class Gate {
   Offset location;
-  Gate({required this.location});
+  String direction;
+  Gate({required this.location, this.direction = "west"});
 }
 
 class AndGate extends Gate {
-  String facing;
   int size; // Added size property to the AndGate model
 
-  AndGate({required this.facing, required Offset location, required this.size})
-      : super(location: location);
+  AndGate(
+      {required String direction, required Offset location, required this.size})
+      : super(location: location, direction: direction);
 }

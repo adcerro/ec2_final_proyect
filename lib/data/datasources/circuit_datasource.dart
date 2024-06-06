@@ -104,7 +104,7 @@ class CircuitDataSource extends ICircuitDataSource {
         }
       }
       gates.add(AndGate(
-          facing: facing,
+          direction: facing,
           location: Offset(
               double.parse(coordinates.first), double.parse(coordinates.last)),
           size: size));
