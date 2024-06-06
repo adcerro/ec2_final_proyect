@@ -3,17 +3,17 @@
   <h1>Logisim N</h1>
   
   <p>
-    Desarrollo de un visualizador de archivos .circ
+    Desarrollo de un visualizador de archivos .circ en flutter
   </p>
    
 <h4>
-    <a href="https://github.com/ddgutierrez/proyecto_clase">View Demo</a>
+    <a href="https://github.com/adcerro/ec2_final_proyect">View Demo</a>
   <span> · </span>
-    <a href="https://github.com/ddgutierrez/proyecto_clase">Documentation</a>
+    <a href="https://github.com/adcerro/ec2_final_proyect">Documentation</a>
   <span> · </span>
-    <a href="https://github.com/ddgutierrez/proyecto_clase/issues/">Report Bug</a>
+    <a href="https://github.com/adcerro/ec2_final_proyect/issues/">Report Bug</a>
   <span> · </span>
-    <a href="https://github.com/ddgutierrez/proyecto_clase/issues/">Request Feature</a>
+    <a href="https://github.com/adcerro/ec2_final_proyect/issues/">Request Feature</a>
   </h4>
 </div>
 
@@ -40,7 +40,7 @@
 
 <!-- About the Project -->
 ## :star2: About the Project
-This is a project for the mobile programming course, the goal is to create a flutter ap for remote staff management
+This is a project for the Computer's Structure course, the goal is to create an app that serves a purpose to the Computer Science community
 
 <!-- TechStack -->
 ### :space_invader: Tech Stack
@@ -54,18 +54,13 @@ This is a project for the mobile programming course, the goal is to create a flu
 </details>
 
 <details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://firebase.google.com/">Firebase</a></li>
-  </ul>
-</details>
 
 <!-- Features -->
 ### :dart: Features
 
-- A login screen
-- A signup screen
-- Responsiveness
+- Wires
+- Tunnels
+- A drawer
 
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
@@ -105,13 +100,13 @@ To run tests, run the following command
 Clone the project
 
 ```bash
-  git clone https://github.com/ddgutierrez/proyecto_clase.git
+  git clone https://github.com/adcerro/ec2_final_proyect.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd proyecto_clase
+  cd ec2_final_proyect
 ```
 
 Install dependencies
@@ -153,11 +148,11 @@ If you feel there's something to improve feel free to make a pull-request
 <!-- Contact -->
 ## :handshake: Contact
 
-Daniel Gutierrez - [ddgutierrez](https://github.com/ddgutierrez)
+Doriano Ojeda 
 
 Alan Florez - [adcerro](https://github.com/adcerro)
 
-Project Link: [https://github.com/ddgutierrez/proyecto_clase](https://github.com/ddgutierrez/proyecto_clase)
+Project Link: [https://github.com/adcerro/ec2_final_proyect](https://github.com/adcerro/ec2_final_proyect)
 
 
 <!-- Acknowledgments -->
