@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 abstract class Gate {
   Offset location;
   String direction;
-  Gate({required this.location, this.direction = "west"});
+  Gate({required this.location, this.direction = "east"});
 }
 
 class AndGate extends Gate {

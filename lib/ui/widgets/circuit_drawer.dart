@@ -28,23 +28,25 @@ class WhiteBoard extends CustomPainter {
       Offset textLocation = gate.location + offset;
       switch (gate.direction) {
         case "east":
+          print("one east");
           textLocation = textLocation + Offset(-15, -10);
-          start = start + Offset(-15, -10);
-          end = end + const Offset(0, 10);
+          start = start + Offset(0, -10);
+          end = end + const Offset(15, 10);
           break;
         case "west":
-          print("westfacing");
-          textLocation = textLocation + const Offset(2, -10);
+          print("one west");
+          textLocation = textLocation + const Offset(1, -10);
           start = start + const Offset(0, -10);
-          end = end + Offset(15, 10);
+          end = end + Offset(30, 10);
           break;
         case "north":
-          textLocation = textLocation + Offset(-15, 5);
+          print("one north");
+          textLocation = textLocation + Offset(-9, 5);
           start = start + Offset(-15, 0);
           end = end + Offset(15, 30);
           break;
         case "south":
-          textLocation = textLocation + Offset(-15, -15);
+          textLocation = textLocation + Offset(-9, -15);
           start = start + Offset(-15, -15);
           end = end + Offset(15, 0);
           break;

@@ -100,7 +100,7 @@ class CircuitDataSource extends ICircuitDataSource {
     void gateProcessing({required XmlElement element, required List gates}) {
       String location = element.attributes[1].value;
       List coordinates = location.substring(1, location.length - 1).split(",");
-      String facing = "west"; // Default facing
+      String facing = "east"; // Default facing
       int size = 30; // default size
 
       for (var subelement in element.childElements) {
