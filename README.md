@@ -3,7 +3,7 @@
   <h1>Logisim N</h1>
   
   <p>
-    Desarrollo de un visualizador de archivos .circ en flutter
+    Development of a .circ file viewer in flutter
   </p>
    
 <h4>
@@ -23,6 +23,8 @@
 # :notebook_with_decorative_cover: Table of Contents
 
 - [About the Project](#star2-about-the-project)
+  * [Summary](#summary)
+  * [why](#why)
   * [Tech Stack](#space_invader-tech-stack)
   * [Features](#dart-features)
 - [Getting Started](#toolbox-getting-started)
@@ -40,7 +42,17 @@
 
 <!-- About the Project -->
 ## :star2: About the Project
-This is a project for the Computer's Structure course, the goal is to create an app that serves a purpose to the Computer Science community
+### Summary
+This is a project for the Computer's Structure course, the goal is to create an app that serves a purpose to the Computer Science community.
+
+Logisim N is a viewer for .circ files (file format of logisim) that tries to bring logisim (or at least the basics of it) to platforms like web with the use of flutter
+
+As of now it just reads information from the file and uses it to draw the circuits
+
+### Why
+Logisim and Logisim evolution are java programs which means that you could run them almost anywhere, but, what about the web? or maybe you don't want to install java. Whatever reason prevents you from using the original program, Logisim N aims to be the tool you need.
+
+We also hope that this project can serve as a base for other projects (like an online multi-user logisim or even just a way to easily share circuits) and as a way to learn things like xml, the flutter canvas, and whatever you need to have any feature you wish
 
 <!-- TechStack -->
 ### :space_invader: Tech Stack
@@ -52,8 +64,6 @@ This is a project for the Computer's Structure course, the goal is to create an 
     <li><a href="https://dart.dev/">Dart</a></li>
   </ul>
 </details>
-
-<details>
 
 <!-- Features -->
 ### :dart: Features
@@ -134,8 +144,8 @@ flutter run
 <!-- Roadmap -->
 ## :compass: Roadmap
 
-* [ ] Pretty Screens
-* [ ] Everything else
+* [ ] Circuit Analizer
+* [ ] Ability to edit files
 
 
 <!-- Contributing -->
