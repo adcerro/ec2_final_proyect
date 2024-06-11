@@ -158,7 +158,7 @@ If you feel there's something to improve feel free to make a pull-request
 <!-- Contact -->
 ## :handshake: Contact
 
-Doriano Ojeda 
+Doriano Ojeda - [DorianoOjeda](https://github.com/DorianoOjeda)
 
 Alan Florez - [adcerro](https://github.com/adcerro)
 
